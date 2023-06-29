@@ -30,7 +30,7 @@
 
 
                 <h1 class="page-header">
-                   Page heading.
+                   Page heading in h1.
                     <small>Secondary Text</small>
                 </h1>
 

@@ -36,7 +36,22 @@
 
                                 if (isset($_POST['submit'])) {
                                     // code...
-                                    echo "string";
+                                    $cat_title = $_POST['cat_title'];
+
+                                    if ($cat_title == "" || empty($cat_title)) {
+                                        // code...
+                                        echo "<h5 style='color:red'>Empty field!!!</h5>";
+                                    } else{
+                                       $query = "INSERT INTO categories(cat_title) ";
+                                       $query .= "VALUE('{$cat_title}')";
+
+                                       $create_category_query = mysqli_query($connection, $query); 
+                                       if (!$create_category_query) {
+                                           // code...
+                                            die('query failed' . mysqli_error($connection));
+                                       }
+                                    }
+                                    
                                 }
 
                             ?>
@@ -54,25 +69,24 @@
 
                         <div class="col-xs-6">
 
-                            <?php
-
-                                $query = "SELECT * FROM categories";
-                                $select_categories = mysqli_query($connection, $query);
-
-
-                                ?>
+                
 
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
                                         <th>Category Title</th>
+                                        <th>Delete Category</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
+                                    <!-- find all categories -->
+                                <?php 
 
-                                <?php
+
+                                     $query = "SELECT * FROM categories";
+                                       $select_categories = mysqli_query($connection, $query);
 
                                     while ($row = mysqli_fetch_assoc($select_categories)) {
                                         // code...
@@ -83,11 +97,29 @@
                                         echo "<tr>";
                                       echo "<td>{$cat_id}</td>";
                                        echo "<td>{$cat_title}</td>";
+                                       echo "<td><a href='categories.php?delete={$cat_id}'>Delete</a></td>";
                                        echo "</tr>";
                                     }
 
                                 ?>
 
+
+                                <?php
+
+                                    if (isset($_GET['delete'])) {
+                                        // code...
+                                        $delete_cat_id = $_GET['delete'];
+
+                                        $query = "DELETE FROM categories WHERE cat_id = {$delete_cat_id} ";
+
+                                        $delete_query = mysqli_query($connection, $query);
+
+                                        header("location: categories.php");
+
+                                    }
+
+
+                                ?>
 
                                         
                                 </tbody>
