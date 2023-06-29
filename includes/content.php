@@ -31,7 +31,7 @@
 
                 <h1 class="page-header">
                    Page heading.
-                    <small>Secondary Text</small>
+                    <small>text sec Text</small>
                 </h1>
 
                 <!-- First Blog Post -->
