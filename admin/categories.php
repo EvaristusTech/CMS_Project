@@ -33,27 +33,7 @@
                         <div class="col-xs-6">
 
                             <?php
-
-                                if (isset($_POST['submit'])) {
-                                    // code...
-                                    $cat_title = $_POST['cat_title'];
-
-                                    if ($cat_title == "" || empty($cat_title)) {
-                                        // code...
-                                        echo "<h5 style='color:red'>Empty field!!!</h5>";
-                                    } else{
-                                       $query = "INSERT INTO categories(cat_title) ";
-                                       $query .= "VALUE('{$cat_title}')";
-
-                                       $create_category_query = mysqli_query($connection, $query); 
-                                       if (!$create_category_query) {
-                                           // code...
-                                            die('query failed' . mysqli_error($connection));
-                                       }
-                                    }
-                                    
-                                }
-
+                                insert_categories();
                             ?>
 
                             <form action="" method="post">
@@ -65,6 +45,23 @@
                                     <input class="btn btn-primary" type="submit" name="submit" value="Add categories">
                                 </div>
                             </form>
+
+                            <!-- update form -->
+
+                           <?php 
+
+                            if (isset($_GET['edit'])) {
+                                    // code...
+                                $cat_id = $_GET['edit'];
+
+                                include "includes/edit_cat.php";
+
+                            }
+
+
+                           ?>
+
+
                         </div>
 
                         <div class="col-xs-6">
@@ -76,14 +73,15 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Category Title</th>
+                                        <th>Edit Category</th>
                                         <th>Delete Category</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    <!-- find all categories -->
+                                    
                                 <?php 
-
+                                    //  find all categories
 
                                      $query = "SELECT * FROM categories";
                                        $select_categories = mysqli_query($connection, $query);
@@ -97,6 +95,7 @@
                                         echo "<tr>";
                                       echo "<td>{$cat_id}</td>";
                                        echo "<td>{$cat_title}</td>";
+                                       echo "<td><a href='categories.php?edit={$cat_id}'>Edit</a></td>";
                                        echo "<td><a href='categories.php?delete={$cat_id}'>Delete</a></td>";
                                        echo "</tr>";
                                     }
@@ -105,6 +104,7 @@
 
 
                                 <?php
+                                        // delete query
 
                                     if (isset($_GET['delete'])) {
                                         // code...
@@ -117,6 +117,24 @@
                                         header("location: categories.php");
 
                                     }
+
+
+                                ?>
+
+                                 <?php
+                                        // delete query
+
+                                    // if (isset($_GET['edit'])) {
+                                    //     // code...
+                                    //     $edit_cat_id = $_GET['edit'];
+
+                                    //     $query = "DELETE FROM categories WHERE cat_id = {$edit_cat_id} ";
+
+                                    //     $edit_query = mysqli_query($connection, $query);
+
+                                    //     header("location: categories.php");
+
+                                    // }
 
 
                                 ?>
