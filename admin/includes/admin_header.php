@@ -5,6 +5,12 @@
     include "../includes/database.php";
 
 ?>
+<?php
+
+    include "function.php";
+
+?>
+
 
 
 

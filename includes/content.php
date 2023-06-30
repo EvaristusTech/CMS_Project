@@ -30,13 +30,9 @@
 
 
                 <h1 class="page-header">
-<<<<<<< HEAD
-                   Page heading in h1.
+                   Page heading
                     <small>Secondary Text</small>
-=======
-                   Page heading.
-                    <small>text sec Text</small>
->>>>>>> bd22a2bf908f4543f1cc285af35ca80f083de826
+
                 </h1>
 
                 <!-- First Blog Post -->

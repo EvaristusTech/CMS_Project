@@ -41,7 +41,7 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#post_items"><i class="fa fa-fw fa-arrows-v"></i> Posts <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="post_items" class="collapse">
                             <li>
-                                <a href="#">View all posts</a>
+                                <a href="posts.php">View all posts</a>
                             </li>
                             <li>
                                 <a href="#">Add post</a>
@@ -49,7 +49,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Catogories</a>
+                        <a href="./categories.php"><i class="fa fa-fw fa-wrench"></i> Catogories</a>
                     </li>
                    
                     <li class="active">
