@@ -8,7 +8,7 @@
 
 
 
-    $query = "SELECT * FROM posts";
+    $query = "SELECT * FROM posts WHERE post_id = {$the_post_id}";
     $select_posts_by_id = mysqli_query($connection, $query);
     while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
         // code...
@@ -40,6 +40,59 @@
 
 
     }
+
+    if (isset($_POST['update_post'])) {
+    	// code...
+    	$post_title = $_POST['title'];
+		$post_category_id = $_POST['post_category'];
+		$post_auther = $_POST['auther'];
+		$post_status = $_POST['post_status'];
+
+		$post_image = $_FILES['image']['name'];
+		$post_image_temp = $_FILES['image']['tmp_name'];
+
+		$post_tags = $_POST['post_tags'];
+		$post_content = $_POST['post_content'];
+		$post_date = date('d-m-y');
+		$post_content_count = 4;
+
+		// moving images from temp location to file
+		move_uploaded_file($post_image_temp, "../images/$post_image");
+
+		if (empty($post_image)) {
+			// code... 
+			$query = "SELECT * FROM posts WHERE post_id = $the_post_id ";
+			$select_image = mysqli_query($connection, $query);
+
+			while ($row = mysqli_fetch_assoc($select_image)) {
+				// code...
+				$post_image = $row['post_image'];
+			}
+
+		}
+
+
+		$query = "UPDATE posts SET ";
+		$query .= "post_title = '{$post_title}', ";
+		$query .= "post_catetory_id = '{$post_category_id}', ";
+		$query .= "post_date = now(), ";
+		$query .= "post_author = '{$post_auther}', ";
+		$query .= "post_status = '{$post_status}', ";
+		$query .= "post_tags = '{$post_tags}', ";
+		$query .= "post_content = '{$post_content}', ";
+		$query .= "post_image = '{$post_image}' ";
+		$query .= "WHERE post_id = {$the_post_id} ";
+
+		$post_update_query = mysqli_query($connection, $query);
+
+		if (!$post_update_query) {
+			// code...
+			die('Query Failed' . mysqli_error($connection)); 
+		}
+    }
+
+
+
 ?>
 
 
@@ -53,7 +106,35 @@
 
 	<div class="form-group">
 		<label for="post_category">Post Category Id</label>
-		<input type="text" value="<?php echo $post_catetory_id; ?>" class="form-control" name="post_category_id">
+		<select name="post_category" id="">
+
+			<?php  
+
+				$query = "SELECT * FROM categories";
+				$select_categories = mysqli_query($connection,$query);
+
+				
+
+				while ($row = mysqli_fetch_assoc($select_categories)) {
+					// code...
+					$cat_id = $row['cat_id'];
+					$cat_title = $row['cat_title'];
+
+					if (!$select_categories) {
+					// code...
+					die('Query Failed' . mysqli_error($connection));
+				}
+
+					echo "<option value='$cat_id'>$cat_title</option>";
+
+				}
+				
+
+			?>
+
+			
+
+		</select>	
 	</div>
 
 	<div class="form-group">
@@ -67,8 +148,10 @@
 	</div>
 
 	<div class="form-group">
-		<label for="post image">Post Image</label>
-		<input type="file" value="<?php echo $post_image; ?>" name="image">
+		<!-- <label for="post image">Post Image</label> -->
+		<img width="100" src="../images/<?php echo $post_image; ?>">
+		<input style="margin-top: 10px;" type="file" value="" name="image">
+
 	</div>
 
 	<div class="form-group">
@@ -82,7 +165,7 @@
 	</div>
 
 	<div>
-		<input type="submit" class="btn btn-primary" name="create_post" value="Publish Post">
+		<input type="submit" class="btn btn-primary" name="update_post" value="update Post">
 	</div>
 	
 </form> 
