@@ -49,7 +49,12 @@
             // code...
             include "includes/add_post.php";
             break;
-        
+
+        case 'edit_post':
+            // code...
+            include "includes/edit_post.php";
+            break;
+
         default:
             // code...
             include "includes/view_all_post.php";

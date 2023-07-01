@@ -18,12 +18,23 @@
 
 		// moving images from temp location to file
 		move_uploaded_file($post_image_temp, "../images/$post_image");
+
+
+		$query = "INSERT INTO posts(post_catetory_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status) ";
+		$query .= "VALUES({$post_category_id},'{$post_title}','{$post_auther}','now()','{$post_image}','{$post_content}','{$post_tags}','{$post_content_count}','{$post_status}' ) ";
+
+		$add_post_query = mysqli_query($connection, $query);
+
+		if (!$add_post_query) {
+			// code...
+			die('Query Failed' . mysqli_error($connection));
+		}
+
 	}
 
 
 
 ?>
-
 
 
 <form action="" method="post" enctype="multipart/form-data">
