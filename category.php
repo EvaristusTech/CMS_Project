@@ -1,10 +1,38 @@
+<?php
+
+    include "includes/database.php";
+
+?>
+<?php
+
+    include "includes/header.php";
+
+?>
+
+    <!-- Navigation -->
+<?php
+
+    include "includes/nav.php";
+
+?>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
 <div class="col-md-8">
 
 
 <?php
-
+    
+    if (isset($_GET['category'])) {
+        // code...
+        $post_cat_id = $_GET['category'];
+    }
    
-        $query = "SELECT * FROM posts"; 
+        $query = "SELECT * FROM posts WHERE post_catetory_id = $post_cat_id "; 
         $post_item = mysqli_query($connection, $query);
 
         while ($row = mysqli_fetch_assoc($post_item)) {
@@ -67,3 +95,26 @@
 
 
             </div>
+
+
+
+            <!-- Blog Sidebar Widgets Column -->
+           
+<?php
+
+    include "includes/sidebar.php";
+
+?>
+
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+
+<?php
+
+    include "includes/footer.php";
+
+?>

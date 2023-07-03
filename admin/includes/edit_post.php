@@ -113,18 +113,17 @@
 				$query = "SELECT * FROM categories";
 				$select_categories = mysqli_query($connection,$query);
 
-				
+					if (!$select_categories) {
+					// code...
+					die('Query Failed' . mysqli_error($connection));
+				}
 
 				while ($row = mysqli_fetch_assoc($select_categories)) {
 					// code...
 					$cat_id = $row['cat_id'];
 					$cat_title = $row['cat_title'];
 
-					if (!$select_categories) {
-					// code...
-					die('Query Failed' . mysqli_error($connection));
-				}
-
+				
 					echo "<option value='$cat_id'>$cat_title</option>";
 
 				}
