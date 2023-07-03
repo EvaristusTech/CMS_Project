@@ -17,3 +17,13 @@ create table posts(
 );
 
 
+create table comments(
+    comment_id int(11) not null PRIMARY KEY AUTO_INCREMENT,
+    comment_post_id int(11) NOT NULL,
+    comment_author VARCHAR(225) NOT NULL,
+    comment_email VARCHAR(225) NOT NULL,
+    comment_content TEXT NOT NULL,
+    comment_status VARCHAR(225) NOT NULL,
+    comment_date DATE NOT NULL
+);
+
