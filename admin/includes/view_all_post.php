@@ -75,7 +75,7 @@ if (isset($_GET['delete'])) {
   $query = "DELETE FROM posts WHERE post_id = {$delete_id}";
 
   $delete_query = mysqli_query($connection, $query);
-
+    header("location: posts.php");
   if (!$delete_query) {
     // code...
     die('query failed' . mysqli_error($connection));

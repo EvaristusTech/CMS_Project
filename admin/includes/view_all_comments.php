@@ -52,13 +52,37 @@
 
         echo "<td>{$comment_email}</td>";
         echo "<td>{$comment_status}</td>";
-        echo "<td>some title</td>";
+
+
+
+
+        $query = "SELECT * FROM posts WHERE post_id = $comment_post_id ";
+        $select_post_id_query = mysqli_query($connection, $query);
+        while ($row = mysqli_fetch_assoc($select_post_id_query)) {
+          // code...
+          $post_id = $row['post_id'];
+          $post_title = $row['post_title'];
+
+        echo "<td><a href='../post.php?p_id=$post_id'>$post_title</a></td>";
+
+ 
+
+        }
+
+
+
+
+
+
+
+
+
         echo "<td>{$comment_date}</td>";
-        echo "<td><a href='posts.php?source=edit_post&p_id={}'>Approve</a></td>";
-        echo "<td><a href='posts.php?delete={}'>unapprove</a></td>";
+        echo "<td><a href='comment.php?approve={$comment_id}'>Approve</a></td>";
+        echo "<td><a href='comment.php?unapprove={$comment_id}'>unapprove</a></td>";
         
         // echo "<td><a href='posts.php?source=edit_post&p_id={}'>Edit</a></td>";
-        echo "<td><a href='posts.php?delete={}'>Delete</a></td>";
+        echo "<td><a href='comment.php?delete={$comment_id}'>Delete</a></td>";
         echo "</tr>";
 
 
@@ -66,18 +90,66 @@
     }
 
 
+if (isset($_GET['approve'])) {
+  // code...
+  $comment_id = $_GET['approve'];
+
+  $query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id = $comment_id ";
+
+  $approve_comment_query = mysqli_query($connection, $query);
+
+    header("location: comment.php");
+  
+
+  if (!$approve_comment_query) {
+    // code...
+    die('query failed' . mysqli_error($connection));
+
+  }
+}
+
+
+
+
+
+if (isset($_GET['unapprove'])) {
+  // code...
+  $comment_id = $_GET['unapprove'];
+
+  $query = "UPDATE comments SET comment_status = 'unapproved' WHERE comment_id = $comment_id ";
+
+  $unapprove_comment_query = mysqli_query($connection, $query);
+
+    header("location: comment.php");
+  
+
+  if (!$unapprove_comment_query) {
+    // code...
+    die('query failed' . mysqli_error($connection));
+
+  }
+}
+
+
+
+
+
 
 if (isset($_GET['delete'])) {
   // code...
-  $delete_id = $_GET['delete'];
+  $comment_id = $_GET['delete'];
 
-  $query = "DELETE FROM posts WHERE post_id = {$delete_id}";
+  $query = "DELETE FROM comments WHERE comment_id = {$comment_id}";
 
   $delete_query = mysqli_query($connection, $query);
+
+    header("location: comment.php");
+
 
   if (!$delete_query) {
     // code...
     die('query failed' . mysqli_error($connection));
+
   }
 }
 
@@ -97,7 +169,6 @@ if (isset($_GET['delete'])) {
                               </tr>
  -->                          </tbody>
                       </table>
-
 
 
 

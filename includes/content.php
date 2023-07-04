@@ -4,7 +4,7 @@
 <?php
 
    
-        $query = "SELECT * FROM posts"; 
+        $query = "SELECT * FROM posts WHERE post_status = 'Published' "; 
         $post_item = mysqli_query($connection, $query);
 
         while ($row = mysqli_fetch_assoc($post_item)) {
@@ -19,8 +19,14 @@
             $post_tags = $row['post_tags'];
             $post_comment_count = $row['post_comment_count'];
             $post_status = $row['post_status'];
-       
 
+
+            if ($post_status != 'published' ) {
+                // code...
+                echo "<h1 class='text-center'>No Post Yet</h1>";
+                // echo "string";
+
+            } else {
 
 ?>
 
@@ -57,6 +63,8 @@
 
 <?php
 
+     }
+        
         }
 
 ?>

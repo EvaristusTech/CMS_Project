@@ -13,15 +13,15 @@
 		$post_tags = $_POST['post_tags'];
 		$post_content = $_POST['post_content'];
 		$post_date = date('d-m-y');
-		$post_content_count = 4;
+		// $post_content_count = 4;
 
 
 		// moving images from temp location to file
 		move_uploaded_file($post_image_temp, "../images/$post_image");
 
 
-		$query = "INSERT INTO posts(post_catetory_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status) ";
-		$query .= "VALUES({$post_category_id},'{$post_title}','{$post_auther}','now()','{$post_image}','{$post_content}','{$post_tags}','{$post_content_count}','{$post_status}' ) ";
+		$query = "INSERT INTO posts(post_catetory_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) ";
+		$query .= "VALUES({$post_category_id},'{$post_title}','{$post_auther}','now()','{$post_image}','{$post_content}','{$post_tags}','{$post_status}' ) ";
 
 		$add_post_query = mysqli_query($connection, $query);
 

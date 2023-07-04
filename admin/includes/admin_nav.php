@@ -52,7 +52,7 @@
                         <a href="./categories.php"><i class="fa fa-fw fa-wrench"></i> Catogories</a>
                     </li>
                    
-                    <li class="active">
+                    <li class="">
                         <a href="comment.php"><i class="fa fa-fw fa-file"></i> comments</a>
                     </li>
                      <li>
