@@ -26,7 +26,7 @@ foreach ($db as $key => $value) {
 
 $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-if ($connection) {
+if (!$connection) {
 	// code...
-	echo "we are connected!!!";
+	die("Query Failed" . mysqli_error($connection));
 }

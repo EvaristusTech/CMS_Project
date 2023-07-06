@@ -21,19 +21,19 @@
                  <!-- Login -->
                 <div class="well">
                     <h4>Login Form</h4>
-                    <form action="includes/login.php" method="post">
+                    <form action="includes/login.php" method="POST">
                     <div class="form-group">
                         <!-- <label for="username">Username</label>  -->
                         <input name="username" placeholder="Enter Username" type="text" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <label for="username">Password</label>    
+                        <!-- <label for="username">Password</label>     -->
                         <input name="password" placeholder="Enter Password" type="text" class="form-control">
                     </div>
 
                      <div class="form-group">
-                        <input name="" type="submit" class="btn btn-primary">
+                        <input name="login_btn" type="submit" class="btn btn-primary">
                     </div>
                     </form>
                     <!-- /.input-group -->

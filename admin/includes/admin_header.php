@@ -1,4 +1,18 @@
+<?php  session_start(); ?>
 <?php  ob_start(); ?>
+
+<?php
+
+    
+if (!isset($_SESSION['user_role'])) {
+    
+    header("location: ../index.php");
+}
+
+
+
+
+?>
 
 <?php
 
