@@ -31,6 +31,9 @@
 			die('Query Failed' . mysqli_error($connection));
 		}
 
+		echo "User Created: " . " " . "<a herf='./users.php'>View Users</a>";
+
+
 
 	}
 

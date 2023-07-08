@@ -21,18 +21,14 @@
             $post_status = $row['post_status'];
 
 
-            if ($post_status !== 'published') {
+            if ($post_status == 'published') {
                 // code...
-                echo "<h1 class='text-center'>No Post Yet</h1>";
-                // echo "string";
-
-            } else {
 
 ?>
 
 
 
-                <h1 class="page-header">
+                <h1 class="page-header"> 
                    Page heading
                     <small>Secondary Text</small>
 
