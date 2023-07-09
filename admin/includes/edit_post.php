@@ -89,6 +89,9 @@
 			// code...
 			die('Query Failed' . mysqli_error($connection)); 
 		}
+
+		echo "<p class='bg-success text-center' style='padding: 20px; font-size:20px;'>Post Updated: <a class='btn btn-success' href='../post.php?p_id={$the_post_id}'> View Posts</a>  OR  <a class='btn btn-danger' href='posts.php'>Edit More Post</a></p>";
+
     }
 
 
@@ -141,10 +144,32 @@
 		<input type="text"value="<?php echo $post_author; ?>" class="form-control" name="auther">
 	</div>
 
+
 	<div class="form-group">
+		<label for="post auther">Post Status</label>
+		<select name="post_status">
+			<option value="<?php echo $post_status ?>"><?php echo $post_status ?></option>
+			<?php
+				if ($post_status == 'published') {
+					// code...
+					echo "<option value='drafted'>Draft</option>";
+				} else {
+					echo "<option value='published'>Publish</option>";
+				}
+
+
+			?>
+		</select>
+	</div>
+
+
+
+
+
+	<!-- <div class="form-group">
 		<label for="post status">Post Status</label>
 		<input type="text" value="<?php echo $post_status; ?>" class="form-control" name="post_status">
-	</div>
+	</div> -->
 
 	<div class="form-group">
 		<!-- <label for="post image">Post Image</label> -->
@@ -160,7 +185,7 @@
 
 	<div class="form-group">
 		<label for="post tags">Post Content</label>
-		<textarea type="text" class="form-control" name="post_content" id="" cols="30" rows="10"><?php echo $post_content; ?></textarea>
+		<textarea type="text" class="form-control" name="post_content" id="body" cols="30" rows="10"><?php echo $post_content; ?></textarea>
 	</div>
 
 	<div>

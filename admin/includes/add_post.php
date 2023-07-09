@@ -98,7 +98,7 @@
 
 	<div class="form-group">
 		<label for="post tags">Post Content</label>
-		<textarea type="text" class="form-control" name="post_content" id="" cols="30" rows="10"></textarea>
+		<textarea type="text" class="form-control" name="post_content" id="body" cols="30" rows="10"></textarea>
 	</div>
 
 	<div>
