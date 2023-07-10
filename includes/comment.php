@@ -7,11 +7,14 @@
         // code...
         $the_post_id = $_GET['p_id'];
 
+
         $comment_author = $_POST['comment_auther']; 
         $comment_email = $_POST['comment_email']; 
         $comment_content = $_POST['comment_content']; 
 
         // echo $comment_auther;
+if (!empty($comment_author) && !empty($comment_email) && !empty($comment_content)) {
+    // code...
 
         $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date)";
 
@@ -36,9 +39,12 @@ if (!$update_comment_count) {
     die('Query Failed' . mysqli_error($connection));
 }
 
+} else {
 
+    echo "<script>alert('Fields can not be empty')</script>";  
 
     } 
+}
 
 ?>
                 <!-- Comments Form -->

@@ -30,6 +30,10 @@
 			die('Query Failed' . mysqli_error($connection));
 		}
 
+		 $the_post_id = mysqli_insert_id($connection);
+
+		echo "<p class='bg-success text-center' style='padding: 20px; font-size:20px;'>Post Created: <a class='btn btn-success' href='../post.php?p_id={$the_post_id}'> View Posts</a>  OR  <a class='btn btn-danger' href='posts.php'>Edit More Post</a></p>";
+
 	}
 
 
@@ -83,7 +87,11 @@
 
 	<div class="form-group">
 		<label for="post status">Post Status</label>
-		<input type="text" class="form-control" name="post_status">
+		<select name="post_status">
+			<option value="drafted">Post Status</option>
+			<option value="published">Publish</option>
+			<option value="drafted">Draft</option>
+		</select>
 	</div>
 
 	<div class="form-group">
