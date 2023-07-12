@@ -10,10 +10,12 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    if (!empty($username) && !empty($email) && !empty($password)) {
+        // code...
+
     $username = mysqli_real_escape_string($connection, $username);   
     $email = mysqli_real_escape_string($connection, $email);   
     $password = mysqli_real_escape_string($connection, $password); 
-
 
         $query = "SELECT randsalt FROM users";  
         $select_randsalt_query = mysqli_query($connection, $query);
@@ -23,7 +25,25 @@ if (isset($_POST['submit'])) {
             die("Query Failed" . mysqli_error($connection));
         }
 
+        $row = mysqli_fetch_assoc($select_randsalt_query);
+        $salt = $row['randsalt'];
 
+        $query = "INSERT INTO users (username, user_email, user_password, user_role)";
+        $query .= "VALUES('$username', '$email', '$password', 'subcriber' )";
+        $register_user_query = mysqli_query($connection, $query);
+        if (!$register_user_query) {
+            // code...
+            die("Query Failed" . mysqli_error($connection) . ' ' . mysqli_errno($connection));
+        }
+
+        $message = "Your Registration Has Been Submitted";
+
+    } else {
+        $message = "Field Can Not Be Empty";
+    }
+
+} else {
+    $message = "";
 }
 
 
@@ -49,6 +69,8 @@ if (isset($_POST['submit'])) {
                 <div class="form-wrap">
                 <h1>Register</h1>
                     <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
+
+                        <h4 class="text-center"><?php echo $message; ?></h4>
                         <div class="form-group">
                             <label for="username" class="sr-only">username</label>
                             <input type="text" name="username" id="username" class="form-control" placeholder="Enter Desired Username">
