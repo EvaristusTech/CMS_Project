@@ -20,7 +20,10 @@
         $user_email = $row['user_email'];
         $user_role = $row['user_role'];
         $user_image = $row['user_image'];
+        // $salt = $row['randsalt'];
     }
+// $hashed_password = crypt($user_password, $salt);
+
 
 
 ?>
@@ -49,6 +52,22 @@
 		// moving images from temp location to file
 		// move_uploaded_file($post_image_temp, "../images/$post_image");
 
+		$query = "SELECT randsalt FROM users";
+		$select_randsalt_query = mysqli_query($connection, $query);
+		if (!$select_randsalt_query) {
+			// code...
+			die("Query Failed" . mysqli_error($connection));
+		}
+
+		while ($row = mysqli_fetch_assoc($select_randsalt_query)) {
+			// code...
+			$salt = $row['randsalt'];
+		}
+		
+		
+  		 $hashed_password = crypt($user_password, $salt);
+
+
 
 		$query = "UPDATE users SET ";
 		$query .= "user_firstname = '{$user_firstname}', ";
@@ -56,7 +75,7 @@
 		$query .= "username = '{$username}', ";
 		$query .= "user_email = '{$user_email}', ";
 		$query .= "user_role = '{$user_role}', ";
-		$query .= "user_password = '{$user_password}' ";
+		$query .= "user_password = '{$hashed_password}' ";
 		$query .= "WHERE user_id = {$the_user_id} ";
 
 		$user_update_query = mysqli_query($connection, $query);

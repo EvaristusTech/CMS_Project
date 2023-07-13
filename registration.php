@@ -25,8 +25,13 @@ if (isset($_POST['submit'])) {
             die("Query Failed" . mysqli_error($connection));
         }
 
-        $row = mysqli_fetch_assoc($select_randsalt_query);
-        $salt = $row['randsalt'];
+       while ( $row = mysqli_fetch_assoc($select_randsalt_query)) {
+            // code...
+         $salt = $row['randsalt'];
+        }
+        
+        $password = crypt($password, $salt);
+
 
         $query = "INSERT INTO users (username, user_email, user_password, user_role)";
         $query .= "VALUES('$username', '$email', '$password', 'subcriber' )";
@@ -38,7 +43,8 @@ if (isset($_POST['submit'])) {
 
         $message = "Your Registration Has Been Submitted";
 
-    } else {
+    }
+     else {
         $message = "Field Can Not Be Empty";
     }
 

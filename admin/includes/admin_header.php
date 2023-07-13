@@ -4,11 +4,17 @@
 <?php
 
     
-if (!isset($_SESSION['user_role'])) {
+// if (!isset($_SESSION['user_role'])) {
     
-    header("location: ../index.php");
-} 
+//     header("location: ../index.php");
+// } 
 
+$user_role = $_SESSION['user_role'];
+
+if ($user_role !== 'Admin') {
+    // code...
+    header("location: ../index.php");
+}
 
 
 
