@@ -69,21 +69,21 @@
 
 
 
-		$query = "UPDATE users SET ";
-		$query .= "user_firstname = '{$user_firstname}', ";
-		$query .= "user_lastname = '{$user_lastname}', ";
-		$query .= "username = '{$username}', ";
-		$query .= "user_email = '{$user_email}', ";
-		$query .= "user_role = '{$user_role}', ";
-		$query .= "user_password = '{$hashed_password}' ";
-		$query .= "WHERE user_id = {$the_user_id} ";
+		// $query = "UPDATE users SET ";
+		// $query .= "user_firstname = '{$user_firstname}', ";
+		// $query .= "user_lastname = '{$user_lastname}', ";
+		// $query .= "username = '{$username}', ";
+		// $query .= "user_email = '{$user_email}', ";
+		// $query .= "user_role = '{$user_role}', ";
+		// $query .= "user_password = '{$hashed_password}' ";
+		// $query .= "WHERE user_id = {$the_user_id} ";
 
-		$user_update_query = mysqli_query($connection, $query);
+		// $user_update_query = mysqli_query($connection, $query);
 
-		if (!$user_update_query) {
-			// code...
-			die('Query Failed' . mysqli_error($connection)); 
-		}
+		// if (!$user_update_query) {
+		// 	// code...
+		// 	die('Query Failed' . mysqli_error($connection)); 
+		// }
 
 
 	}
