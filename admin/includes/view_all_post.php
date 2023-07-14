@@ -29,6 +29,39 @@
             }
             break;
 
+
+            case 'clone':
+              // code...
+            $query = "SELECT * FROM posts WHERE post_id = {$postValueId} ";
+            $select_post_query = mysqli_query($connection, $query);
+            while ($row = mysqli_fetch_assoc($select_post_query)) {
+              // code...
+              $post_id = $row['post_id'];
+              $post_author = $row['post_author'];
+              $post_catetory_id = $row['post_catetory_id'];
+              $post_title = $row['post_title'];
+              $post_date = $row['post_date'];
+              $post_image = $row['post_image'];
+              $post_content = $row['post_content'];
+              $post_tags = $row['post_tags'];
+              $post_comment_count = $row['post_comment_count'];
+              $post_status = $row['post_status']; 
+            }
+            $query = "INSERT INTO posts(post_catetory_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) ";
+            $query .= "VALUES({$post_catetory_id}, '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_status}') ";
+
+            $copy_query = mysqli_query($connection, $query);
+
+            if (!$copy_query) {
+              // code...
+              die("Query Failed" . mysqli_error($connection));
+            }
+
+              break;
+
+
+
+
              case 'delete':
             // code...
              $query = "DELETE FROM posts ";
@@ -64,6 +97,7 @@
         <option value="">Select Options</option>
         <option value="published">Publish</option>
         <option value="drafted">Draft</option>
+        <option value="clone">Clone</option>
         <option value="delete">Delete</option>
       </select>
     </div>
@@ -95,7 +129,7 @@
 
 <?php  
 
-    $query = "SELECT * FROM posts";
+    $query = "SELECT * FROM posts ORDER BY post_id DESC ";
     $post_query = mysqli_query($connection, $query);
     while ($row = mysqli_fetch_assoc($post_query)) {
         // code...

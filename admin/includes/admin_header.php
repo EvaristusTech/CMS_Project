@@ -63,6 +63,8 @@ if ($user_role !== 'Admin') {
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
         <script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/ckeditor.js"></script>
