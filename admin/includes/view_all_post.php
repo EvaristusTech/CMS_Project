@@ -142,7 +142,7 @@
         echo "<td><a href='../post.php?p_id={$post_id}'>View Posts</a></td>";
         echo "<td>{$post_date}</td>";
         echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
-        echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
+        echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to Delete'); \" href='posts.php?delete={$post_id}'>Delete</a></td>";
         echo "</tr>";
 
 
@@ -167,19 +167,7 @@ if (isset($_GET['delete'])) {
 
 
  ?>
-<!-- 
-                              <tr>
-                                  <td>10</td>
-                                  <td>Eva Tech</td>
-                                  <td>Bootstrap framework</td>
-                                  <td>Bootstrap</td>
-                                  <td>Status</td>
-                                  <td>Images</td>
-                                  <td>Tags</td>
-                                  <td>Comments</td>
-                                  <td>Date</td>
-                              </tr>
- -->                          </tbody>
+                        </tbody>
                       </table>
 
 

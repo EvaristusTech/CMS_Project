@@ -123,7 +123,7 @@
 	<div class="form-group">
 		<label for="post tags">Role</label>
 		<select name="user_role" id="">
-			<option value="subcriber"><?php echo $user_role ;?></option>
+			<option value="<?php echo $user_role ;?>"><?php echo $user_role ;?></option>
 <?php
 	
 	if ($user_role == 'Admin') {
