@@ -50,3 +50,18 @@ $('#load-screen').delay(700).fadeOut(600, function(){
 
 
 });
+
+
+
+function loadUserOnline(){
+
+    $.get("function.php?onlineusers=result", function(data){
+        $(".usersonline").text(data);
+    });
+
+}
+
+setInterval(function(){
+    loadUserOnline();
+},500);
+

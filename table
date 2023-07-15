@@ -41,3 +41,9 @@ create table users(
     randsalt VARCHAR(225) NOT NULL
 );
 
+
+create table users_online(
+    id int(11) not null PRIMARY KEY AUTO_INCREMENT,
+    session VARCHAR(225) NOT NULL,
+    time int(11) NOT NULL
+);

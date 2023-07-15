@@ -1,5 +1,53 @@
 <?php
 
+
+function users_online(){
+
+    if (isset($_GET['onlineusers'])) {
+        // code...
+    global $connection;    
+
+    if (!$connection) {
+        // code...
+        session_start();
+
+        include("../includes/database.php");
+
+        $session = session_id();
+        $time = time();
+        $time_out_in_seconds = 30;
+        $time_out = $time - $time_out_in_seconds;
+
+        $query = "SELECT * FROM users_online WHERE session = '$session' ";
+        $send_query = mysqli_query($connection, $query);
+        $count = mysqli_num_rows($send_query);
+
+        if ($count == NULL) {
+            // code...
+            $query = "INSERT INTO users_online(session, time) ";
+            $query .= "VALUES('$session', '$time')";
+            mysqli_query($connection, $query);
+        } else {
+            $query = "UPDATE users_online SET time = '$time' ";
+            $query .= "WHERE session = '$session'";
+            mysqli_query($connection, $query);
+
+        }
+
+        $query = "SELECT * FROM users_online WHERE time > '$time_out'";
+        $users_online_query = mysqli_query($connection, $query);
+        echo $count_user = mysqli_num_rows($users_online_query);
+
+    }
+
+
+
+    }
+  }  
+  users_online();
+
+
+
 function insert_categories(){
 
     global $connection;
