@@ -3,8 +3,19 @@
 
 <?php
 
+
+    $select_query_count = "SELECT * FROM posts";
+    $find_count = mysqli_query($connection, $select_query_count);
+    $count = mysqli_num_rows($find_count);
+
+    $count = ceil($count / 5);
+
+
+
+
+
    
-        $query = "SELECT * FROM posts WHERE post_status = 'published' "; 
+        $query = "SELECT * FROM posts "; 
         $post_item = mysqli_query($connection, $query);
 
         while ($row = mysqli_fetch_assoc($post_item)) {
@@ -27,7 +38,7 @@
 ?>
 
 
-
+                <h1><?php echo $count ?></h1>
                 <h1 class="page-header"> 
                    Page heading
                     <small>Secondary Text</small>

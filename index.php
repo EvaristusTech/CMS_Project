@@ -43,6 +43,17 @@
 
         <hr>
 
+        <ul class="pager">
+    <?php
+    
+        for ($i=1; $i <= $count ; $i++) { 
+            // code...
+            echo"<li><a href=''>$i</a></li>";
+        }
+
+    ?>        
+        </ul>
+
 
 <?php
 
