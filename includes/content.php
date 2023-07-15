@@ -3,19 +3,36 @@
 
 <?php
 
+$per_page = 5;
+
+if (isset($_GET['page'])) {
+    // code...
+    $page = $_GET['page'];
+} else {
+    $page = "";
+}
+
+
+if ($page == "" || $page == 1) {
+    // code...
+    $page_1 = 0;
+} else {
+    $page_1 = ($page * $per_page) - $per_page;
+}
+
 
     $select_query_count = "SELECT * FROM posts";
     $find_count = mysqli_query($connection, $select_query_count);
     $count = mysqli_num_rows($find_count);
 
-    $count = ceil($count / 5);
+    $count = ceil($count / $per_page);
 
 
 
 
 
    
-        $query = "SELECT * FROM posts "; 
+        $query = "SELECT * FROM posts LIMIT $page_1, $per_page"; 
         $post_item = mysqli_query($connection, $query);
 
         while ($row = mysqli_fetch_assoc($post_item)) {
