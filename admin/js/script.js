@@ -53,15 +53,19 @@ $('#load-screen').delay(700).fadeOut(600, function(){
 
 
 
-function loadUserOnline(){
+// function loadUsersOnline() {
 
-    $.get("function.php?onlineusers=result", function(data){
-        $(".usersonline").text(data);
-    });
+//     $.get("function.php?onlineusers=result", function(data){
+//         $(".usersonline").text(data);
 
-}
+//     });
 
-setInterval(function(){
-    loadUserOnline();
-},500);
+// }
 
+// setInterval(function(){
+
+//     loadUsersOnline();
+
+// },500);
+
+//  

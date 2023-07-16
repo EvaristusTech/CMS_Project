@@ -11,9 +11,9 @@
 
 $user_role = $_SESSION['user_role'];
 
-if ($user_role !== 'Admin') {
+if ($user_role == 'Admin') {
     // code...
-    header("location: ../index.php");
+    header("location: ./index.php");
 }
 
 
