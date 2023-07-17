@@ -10,6 +10,7 @@
                                   <th>Date</th>
                                   <th>Edit To Admin</th>
                                   <th>Edit To Subcriber</th>
+                                  <th>Edit</th>
                                   <th>Delete</th>
                               </tr>
                           </thead>
