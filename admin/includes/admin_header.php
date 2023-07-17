@@ -9,12 +9,12 @@
 //     header("location: ../index.php");
 // } 
 
-$user_role = $_SESSION['user_role'];
+// $user_role = $_SESSION['user_role'];
 
-if ($user_role !== 'Admin') {
-    // code...
-    header("location: ../index.php");
-}
+// if ($user_role !== 'Admin') {
+//     // code...
+//     header("location: ../index.php");
+// }
 
 
 

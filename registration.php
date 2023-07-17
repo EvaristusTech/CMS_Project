@@ -15,22 +15,25 @@ if (isset($_POST['submit'])) {
 
     $username = mysqli_real_escape_string($connection, $username);   
     $email = mysqli_real_escape_string($connection, $email);   
-    $password = mysqli_real_escape_string($connection, $password); 
+    $password = mysqli_real_escape_string($connection, $password);
 
-        $query = "SELECT randsalt FROM users";  
-        $select_randsalt_query = mysqli_query($connection, $query);
 
-        if (!$select_randsalt_query) {
-            // code...
-            die("Query Failed" . mysqli_error($connection));
-        }
+    $password = password_hash( $password, PASSWORD_BCRYPT, array('cost' => 12) ); 
 
-       while ( $row = mysqli_fetch_assoc($select_randsalt_query)) {
-            // code...
-         $salt = $row['randsalt'];
-        }
-        
-        $password = crypt($password, $salt);
+        // $query = "SELECT randsalt FROM users";  
+        // $select_randsalt_query = mysqli_query($connection, $query);
+
+        // if (!$select_randsalt_query) {
+        //     // code...
+        //     die("Query Failed" . mysqli_error($connection));
+        // }
+
+       // while ( $row = mysqli_fetch_assoc($select_randsalt_query)) {
+       //      // code...
+       //   $salt = $row['randsalt'];
+       //  }
+            
+       //  $password = crypt($password, $salt);
 
 
         $query = "INSERT INTO users (username, user_email, user_password, user_role)";
