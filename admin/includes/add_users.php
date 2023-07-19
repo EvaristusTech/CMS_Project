@@ -10,7 +10,7 @@
 		// $post_image = $_FILES['image']['name'];
 		// $post_image_temp = $_FILES['image']['tmp_name'];
 
-		$user_role = $_POST['user_role'];
+		$user_role = $_POST['user_role']; 
 		$user_password = $_POST['user_password'];
 		// $user_date = date('d-m-y');
 		// $post_content_count = 4;
@@ -18,6 +18,8 @@
 
 		// moving images from temp location to file
 		// move_uploaded_file($post_image_temp, "../images/$post_image");
+
+    $user_password = password_hash( $user_password, PASSWORD_BCRYPT, array('cost' => 10) ); 
 
 
 		$query = "INSERT INTO users(user_firstname, user_lastname, username, user_email, user_role, user_password ) ";

@@ -52,20 +52,28 @@
 		// moving images from temp location to file
 		// move_uploaded_file($post_image_temp, "../images/$post_image");
 
-		$query = "SELECT randsalt FROM users";
-		$select_randsalt_query = mysqli_query($connection, $query);
-		if (!$select_randsalt_query) {
+
+		if (!empty($user_password)) {
 			// code...
-			die("Query Failed" . mysqli_error($connection));
+			$query_password = "SELECT user_password FROM users WHERE user_id = {$the_user_id} ";
+			$get_user_query = mysqli_query($connection, $query_password);
+
+			if (!$get_user_query) {
+				// code...
+				die("Query Failed" . mysqli_error($connection));
+			}
+
+			$row = mysqli_fetch_assoc($get_user_query);
+			$db_user_password = $row['user_password'];
+
+
+		if ($db_user_password != $user_password) {
+			// code...
+   		 $hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12) ); 
+
+		}
 		}
 
-		while ($row = mysqli_fetch_assoc($select_randsalt_query)) {
-			// code...
-			$salt = $row['randsalt'];
-		}
-		
-		
-  		 $hashed_password = crypt($user_password, $salt);
 
 
 
@@ -84,6 +92,8 @@
 			// code...
 			die('Query Failed' . mysqli_error($connection)); 
 		}
+
+		echo "User Updated" . "<a href='users.php'>View Users?</a>";
 
 
 	}
