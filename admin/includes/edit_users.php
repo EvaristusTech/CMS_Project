@@ -4,7 +4,6 @@
 	if (isset($_GET['user_id'])) {
 		// code...
 		$the_user_id = $_GET['user_id'];
-	}
 
 
 
@@ -24,8 +23,7 @@
     }
 // $hashed_password = crypt($user_password, $salt);
 
-
-
+ 
 ?>
 
 
@@ -91,11 +89,16 @@
 		if (!$user_update_query) {
 			// code...
 			die('Query Failed' . mysqli_error($connection)); 
-		}
 
 		echo "User Updated" . "<a href='users.php'>View Users?</a>";
+		}
 
 
+
+}
+
+} else {
+	header("Location: index.php");
 	}
 
 
