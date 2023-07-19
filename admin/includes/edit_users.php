@@ -153,7 +153,7 @@
 
 	<div class="form-group">
 		<label for="post tags">Password</label>
-		<input type="text" value="<?php echo $user_password; ?>" class="form-control" name="user_password">
+		<input type="text" autocomplete="off" value="<?php echo $user_password; ?>" class="form-control" name="user_password">
 	</div>
 
 	<div>
