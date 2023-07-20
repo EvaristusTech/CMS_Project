@@ -47,7 +47,7 @@
 <form action="" method="post" enctype="multipart/form-data">
 
 	<div class="form-group">
-		<label for="post auther">Firstname</label>
+		<label for="post auther">First Name</label>
 		<input type="text" class="form-control" name="user_firstname">
 	</div>
 
