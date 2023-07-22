@@ -4,7 +4,7 @@
 		// code...
 		$post_title = $_POST['title'];
 		$post_category_id = $_POST['post_category'];
-		$post_auther = $_POST['auther'];
+		$post_user = $_POST['post_user'];
 		$post_status = $_POST['post_status'];
 
 		$post_image = $_FILES['image']['name'];
@@ -20,8 +20,8 @@
 		move_uploaded_file($post_image_temp, "../images/$post_image");
 
 
-		$query = "INSERT INTO posts(post_catetory_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) ";
-		$query .= "VALUES({$post_category_id},'{$post_title}','{$post_auther}','now()','{$post_image}','{$post_content}','{$post_tags}','{$post_status}' ) ";
+		$query = "INSERT INTO posts(post_catetory_id, post_title, post_user, post_date, post_image, post_content, post_tags, post_status) ";
+		$query .= "VALUES({$post_category_id},'{$post_title}','{$post_user}','now()','{$post_image}','{$post_content}','{$post_tags}','{$post_status}' ) ";
 
 		$add_post_query = mysqli_query($connection, $query);
 
@@ -80,10 +80,47 @@
 		</select>	
 	</div>
 
+
 	<div class="form-group">
+		<label for="post_user">Users</label>
+		<select name="post_user" id="">
+
+			<?php  
+
+				$user_query = "SELECT * FROM users";
+				$select_users = mysqli_query($connection, $user_query);
+
+					if (!$select_users) {
+					// code...
+					die('Query Failed' . mysqli_error($connection));
+				}
+
+				while ($row = mysqli_fetch_assoc($select_users)) {
+					// code...
+					$user_id = $row['user_id'];
+					$username = $row['username'];
+
+				
+					echo "<option value='$user_id'>$username</option>";
+
+				}
+				
+
+			?>
+
+			
+
+		</select>	
+	</div>
+
+
+
+
+
+<!-- 	<div class="form-group">
 		<label for="post auther">Post Author</label>
 		<input type="text" class="form-control" name="auther">
-	</div>
+	</div> -->
 
 	<div class="form-group">
 		<label for="post status">Post Status</label>

@@ -15,7 +15,7 @@
             if (!$publish_query) {
               // code...
               die("Query Failed" . mysqli_error($connection));
-            }
+            } 
           break;
 
           case 'drafted':
@@ -137,6 +137,7 @@
         // code...
         $post_id = $row['post_id'];
         $post_author = $row['post_author'];
+        $post_user = $row['post_user'];
         $post_catetory_id = $row['post_catetory_id'];
         $post_title = $row['post_title'];
         $post_date = $row['post_date'];
@@ -154,7 +155,27 @@
 
         <?php
         echo "<td>{$post_id}</td>";
-        echo "<td>{$post_author}</td>";
+
+
+        if (isset($post_author) || !empty($post_author)) {
+          // code...
+          echo "<td>{$post_author}</td>";
+        
+        } elseif (isset($post_user) || !empty($post_user)) {
+          // code...
+          echo "<td>{$post_user}</td>";
+
+        }
+
+        
+
+    
+
+
+
+
+
+
         echo "<td>{$post_title}</td>";
 
         $query = "SELECT * FROM categories WHERE cat_id = {$post_catetory_id} ";
@@ -175,7 +196,25 @@
         echo "<td>{$post_status}</td>";
         echo "<td><img width='100' height='100' src='../images/$post_image' alt='images'></td>";
         echo "<td>{$post_tags}</td>";
-        echo "<td>{$post_comment_count}</td>";
+
+
+        $query = "SELECT * FROM comments where comment_post_id = $post_id ";
+        $send_comment_query = mysqli_query($connection, $query);
+        while ($row = mysqli_fetch_assoc($send_comment_query)) {
+          // code...
+          $comment_id = $row['comment_id'];
+        }
+        $count_comments = mysqli_num_rows($send_comment_query);
+
+
+
+        echo "<td><a href='post_comment.php?id=$post_id'>{$count_comments}</a></td>";
+
+
+
+
+
+
         echo "<td><a href='../post.php?p_id={$post_id}'>View Posts</a></td>";
         echo "<td>{$post_date}</td>";
         echo "<td>{$post_views_count}</td>";

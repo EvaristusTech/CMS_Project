@@ -8,6 +8,7 @@ create table posts(
     post_catetory_id int(11) NOT NULL,
     post_title VARCHAR(225) NOT NULL,
     post_author VARCHAR(225) NOT NULL,
+    post_user VARCHAR(225) NOT NULL,
     post_date DATE NOT NULL,
     post_image TEXT NOT NULL,
     post_content TEXT NOT NULL,
