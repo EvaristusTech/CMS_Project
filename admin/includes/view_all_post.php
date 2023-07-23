@@ -112,7 +112,7 @@
                               <tr>
                                   <th><input id="selectAllBoxes" type="checkbox"></th>
                                   <th>ID</th>
-                                  <th>Auther</th>
+                                  <th>Auther.</th>
                                   <th>Title</th>
                                   <th>Category</th>
                                   <th>Status</th>
