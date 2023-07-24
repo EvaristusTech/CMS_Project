@@ -30,3 +30,4 @@ if (!$connection) {
 	// code...
 	die("Query Failed" . mysqli_error($connection));
 }
+

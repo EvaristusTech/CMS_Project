@@ -112,7 +112,7 @@
                               <tr>
                                   <th><input id="selectAllBoxes" type="checkbox"></th>
                                   <th>ID</th>
-                                  <th>Auther.</th>
+                                  <th>Users</th>
                                   <th>Title</th>
                                   <th>Category</th>
                                   <th>Status</th>
@@ -157,11 +157,11 @@
         echo "<td>{$post_id}</td>";
 
 
-        if (isset($post_author) || !empty($post_author)) {
+        if (!empty($post_author)) {
           // code...
           echo "<td>{$post_author}</td>";
         
-        } elseif (isset($post_user) || !empty($post_user)) {
+        } elseif (!empty($post_user)) {
           // code...
           echo "<td>{$post_user}</td>";
 

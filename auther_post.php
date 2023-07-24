@@ -34,7 +34,7 @@
     }
 
    
-        $query = "SELECT * FROM posts WHERE post_author = '{$the_post_auther}' "; 
+        $query = "SELECT * FROM posts WHERE post_user = '{$the_post_auther}' "; 
         $post_item = mysqli_query($connection, $query);
 
         while ($row = mysqli_fetch_assoc($post_item)) {
@@ -42,7 +42,7 @@
             $post_id = $row['post_id'];
             $post_catetory_id = $row['post_catetory_id'];
             $post_title = strtoupper($row['post_title']);
-            $post_author = $row['post_author'];
+            $post_author = $row['post_user'];
             $post_date = $row['post_date'];
             $post_image = $row['post_image'];
             $post_content = $row['post_content'];
