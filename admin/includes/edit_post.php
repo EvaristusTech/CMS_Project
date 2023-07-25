@@ -139,7 +139,7 @@
 	</div>
 
 	<div class="form-group">
-		<label for="post_user">Users</label>
+		<labe for="post_user">Users</label>
 		<select name="post_user" id="">
 
 		<?php echo "<option value='{$post_user}'>$post_user</option>";?>
