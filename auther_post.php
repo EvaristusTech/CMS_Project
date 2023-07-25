@@ -12,7 +12,7 @@
     <!-- Navigation -->
 <?php
 
-    include "includes/nav.php";
+    include "includes/nav.ph";
 
 ?>
 
