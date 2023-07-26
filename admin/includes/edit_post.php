@@ -22,20 +22,7 @@
         $post_comment_count = $row['post_comment_count'];
         $post_status = $row['post_status'];
 
-        // echo "<tr>";
-        // echo "<td>{$post_id}</td>";
-        // echo "<td>{$post_user}</td>";
-        // echo "<td>{$post_title}</td>";
-        // echo "<td>{$post_catetory_id}</td>";
-        // echo "<td>{$post_status}</td>";
-        // echo "<td><img width='100' height='100' src='../images/$post_image' alt='images'></td>";
-        // echo "<td>{$post_tags}</td>";
-        // echo "<td>{$post_comment_count}</td>";
-        // echo "<td>{$post_date}</td>";
-        // // echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
-        // // echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
-        // echo "</tr>";
-
+     
 
 
     }
