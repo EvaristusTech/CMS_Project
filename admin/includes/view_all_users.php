@@ -112,7 +112,7 @@ if (isset($_GET['change_to_admin'])) {
 
 if (isset($_GET['change_to_subcriber'])) {
   // code...
-  $user_id = $_GET['change_to_subcriber'];
+  $user_id = escape($_GET['change_to_subcriber']);
 
   $query = "UPDATE users SET user_role = 'Subcriber' WHERE user_id = $user_id ";
 
@@ -135,11 +135,20 @@ if (isset($_GET['change_to_subcriber'])) {
 
 if (isset($_GET['delete'])) {
   // code...
-  $user_id = $_GET['delete'];
 
-  $query = "DELETE FROM users WHERE user_id = {$user_id}";
 
-  $delete_user_query = mysqli_query($connection, $query);
+  if (isset($_SESSION['user_role'])) {
+
+    $user_role = $_SESSION['user_role'];
+    
+      if ($user_role == 'Admin') {
+   
+
+      $user_id = mysqli_real_escape_string($connection, $_GET['delete']);
+
+      $query = "DELETE FROM users WHERE user_id = {$user_id}";
+
+      $delete_user_query = mysqli_query($connection, $query);
 
     header("location: users.php");
 
@@ -147,7 +156,8 @@ if (isset($_GET['delete'])) {
   if (!$delete_user_query) {
     // code...
     die('query failed' . mysqli_error($connection));
-
+       }
+    }
   }
 }
 
