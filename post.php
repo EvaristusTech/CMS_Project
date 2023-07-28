@@ -38,11 +38,26 @@
             // code...
             die("Query Failed" . mysqli_error($connection));
         }
+
+
+        if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Admin') {
+            // code...
+            $query = "SELECT * FROM posts WHERE post_id = $the_post_id "; 
+        }else{
+            $query = "SELECT * FROM posts WHERE post_id = $the_post_id AND post_status = 'published ' "; 
+        }
+
     
 
    
-        $query = "SELECT * FROM posts WHERE post_id = $the_post_id "; 
+        // $query = "SELECT * FROM posts WHERE post_id = $the_post_id "; 
         $post_item = mysqli_query($connection, $query);
+
+     if (mysqli_num_rows($post_item) < 1) {
+            // code...
+
+            echo "<h1 class='text-center'>No Post Avaliable</h1>";
+        } else{
 
         while ($row = mysqli_fetch_assoc($post_item)) {
             // code...
@@ -68,8 +83,7 @@
 
 
                 <h1 class="page-header">
-                   Page heading
-                    <small>Secondary Text</small>
+                  Posts
 
                 </h1>
 
@@ -94,15 +108,14 @@
 
 <?php
     }
-        } else {
-            header("Location: index.php");
-        }
+    include "includes/comment.php"; 
+       } 
+   }
 
 ?>
 
 
 
-<?php include "includes/comment.php"; ?>
 
 
 

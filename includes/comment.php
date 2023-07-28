@@ -109,6 +109,9 @@ while ($row = mysqli_fetch_assoc($display_comment_query)) {
 
 <?php    
 }
+ // else {
+ //            header("Location: index.php");
+ //        }
 
 ?>
 
