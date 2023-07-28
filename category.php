@@ -30,10 +30,18 @@
     if (isset($_GET['category'])) {
         // code...
         $post_cat_id = $_GET['category'];
-    }
+ 
    
-        $query = "SELECT * FROM posts WHERE post_catetory_id = $post_cat_id "; 
+        $query = "SELECT * FROM posts WHERE post_catetory_id = $post_cat_id AND post_status = 'published' "; 
         $post_item = mysqli_query($connection, $query);
+
+
+
+        if (mysqli_num_rows($post_item) < 1) {
+            // code...
+
+            echo "<h1 class='text-center'>No Post Avaliable</h1>";
+        } else{
 
         while ($row = mysqli_fetch_assoc($post_item)) {
             // code...
@@ -84,7 +92,10 @@
                 
 
 <?php
-
+    }
+        }
+            }else{
+            header("location: index.php");
         }
 
 ?>

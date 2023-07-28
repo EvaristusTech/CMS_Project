@@ -21,9 +21,15 @@ if ($page == "" || $page == 1) {
 }
 
 
-    $select_query_count = "SELECT * FROM posts";
+    $select_query_count = "SELECT * FROM posts WHERE post_status = 'published' ";
     $find_count = mysqli_query($connection, $select_query_count);
     $count = mysqli_num_rows($find_count);
+
+    if ($count < 1) {
+        // code...
+        echo "<h1 class='text-center'>No Post Avaliable</h1>";
+
+    } else {  
 
     $count = ceil($count / $per_page);
 
@@ -48,9 +54,6 @@ if ($page == "" || $page == 1) {
             $post_comment_count = $row['post_comment_count'];
             $post_status = $row['post_status'];
 
-
-            if ($post_status == 'published') {
-                // code...
 
 ?>
 
