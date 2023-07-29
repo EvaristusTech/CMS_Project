@@ -201,7 +201,7 @@
 
 	<div class="form-group">
 		<label for="post tags">Post Content</label>
-		<textarea type="text" class="form-control" name="post_content" id="body" cols="30" rows="10"><?php echo $post_content; ?></textarea>
+		<textarea type="text" class="form-control" name="post_content" id="body" cols="30" rows="10"><?php echo str_replace('\r\n', '</br>', $post_content); ?></textarea>
 	</div>
 
 	<div>

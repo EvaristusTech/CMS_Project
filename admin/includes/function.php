@@ -130,3 +130,56 @@ if (isset($_GET['delete'])) {
 
 
 }
+
+
+
+
+function recordCount($table){
+
+    global $connection;
+
+    $query = "SELECT * FROM " . $table;
+    $select_all_post = mysqli_query($connection, $query);
+    $result = mysqli_num_rows($select_all_post);
+    if (!$result) {
+        // code...
+        die("Query Failed" . mysqli_error($connection));
+    }
+
+    return $result;
+}
+
+
+
+
+
+function checkStatus($table, $column, $status){
+
+        global $connection;
+
+    $query = "SELECT * FROM $table WHERE $column = '$status' ";
+    $select_all_draft_posts = mysqli_query($connection, $query);
+    $result = mysqli_num_rows($select_all_draft_posts);
+      if (!$result) {
+        // code...
+        die("Query Failed" . mysqli_error($connection));
+    }
+
+       return $result;
+
+}
+
+
+function checkUserRole($table, $column, $role){
+
+       global $connection;
+
+$query = "SELECT * FROM $table WHERE $column = '$role'";
+$select_all_subcribers = mysqli_query($connection, $query);
+$result = mysqli_num_rows($select_all_subcribers);
+  if (!$result) {
+        // code...
+        die("Query Failed" . mysqli_error($connection));
+    }
+          return $result;
+}
