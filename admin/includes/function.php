@@ -203,9 +203,9 @@ $user_role = $row['user_role'];
 
 if ($user_role == 'Admin') {
     // code...
-    Return true;
+    return true;
 } else {
-    Return false;
+    return false;
 
 }
 

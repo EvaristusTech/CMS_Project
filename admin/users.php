@@ -4,6 +4,18 @@
 
 ?>
 
+<?php
+
+    if (!is_admin($_SESSION['username'])) {
+        // code...
+        header("location: index.php");
+    }
+
+
+?>
+
+
+
     <div id="wrapper">
 
         <!-- Navigation -->
