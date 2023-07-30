@@ -183,3 +183,30 @@ $result = mysqli_num_rows($select_all_subcribers);
     }
           return $result;
 }
+
+
+
+function is_admin($username = '') {
+
+       global $connection;
+ 
+$query = "SELECT user_role FROM users WHERE username = '$username'";
+$result = mysqli_query($connection, $query);
+if (!$result) {
+    // code...
+    die("Query Failed" . mysqli_error($connection));
+}
+
+$row = mysqli_fetch_array($result);
+$user_role = $row['user_role'];
+
+
+if ($user_role == 'Admin') {
+    // code...
+    Return true;
+} else {
+    Return false;
+
+}
+
+}
