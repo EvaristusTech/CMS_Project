@@ -186,7 +186,7 @@ $result = mysqli_num_rows($select_all_subcribers);
 
 
 
-function is_admin($username = '') {
+function is_admin($username) {
 
        global $connection;
  
@@ -207,6 +207,27 @@ if ($user_role == 'Admin') {
 } else {
     return false;
 
+}
+
+}
+
+
+function username_exist($username) {
+
+           global $connection;
+ 
+$query = "SELECT username FROM users WHERE username = '$username'";
+$result = mysqli_query($connection, $query);
+if (!$result) {
+    // code...
+    die("Query Failed" . mysqli_error($connection));
+}
+
+if (mysqli_num_rows($result) > 0) {
+    // code...
+    return true;
+} else {
+    return false;
 }
 
 }
