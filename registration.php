@@ -6,63 +6,53 @@
 
 if (isset($_POST['submit'])) {
     // code...
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
 
+    $username = trim($_POST['username']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
-    if (username_exist($username)) {
+    $error = [
+
+        'username' => '',
+        'email' => '',
+        'password' => ''
+    ];
+   
+   if (strlen($username) < 4) {
+        $error['username'] = 'Username too short!!!';
+   }
+   
+   if ($username = '') {
+        $error['username'] = 'Username cannot be empty!!!';
+   }
+
+    if (username_exists($username)) {
+        $error['username'] = 'Username already exist!!!';
+   }
+
+   if ($email = '') {
+        $error['email'] = 'email cannot be empty!!!';
+   }
+
+    if (email_exists($email)) {
+        $error['email'] = 'email already exist!!!';
+   }
+
+   if ($password = '') {
+        $error['password'] = 'password cannot be empty!!!';
+   }
+
+   foreach ($error as $key => $value) {
+       // code...
+    if (empty($value)) {
         // code...
-        $message = "Username exist!!!";
+        register_user($username, $email, $password);
 
+        login_user($username, $password)
     }
+   }
 
-    if (!empty($username) && !empty($email) && !empty($password)) {
-        // code...
-
-    $username = mysqli_real_escape_string($connection, $username);   
-    $email = mysqli_real_escape_string($connection, $email);   
-    $password = mysqli_real_escape_string($connection, $password);
-
-
-    $password = password_hash( $password, PASSWORD_BCRYPT, array('cost' => 12) ); 
-
-       //  $query = "SELECT randsalt FROM users";  
-       //  $select_randsalt_query = mysqli_query($connection, $query);
-
-       //  if (!$select_randsalt_query) {
-       //      // code...
-       //      die("Query Failed" . mysqli_error($connection));
-       //  }
-
-       // while ( $row = mysqli_fetch_assoc($select_randsalt_query)) {
-       //      // code...
-       //   $salt = $row['randsalt'];
-       //  }
-            
-       //  $password = crypt($password, $salt);
-
-
-        $query = "INSERT INTO users (username, user_email, user_password, user_role)";
-        $query .= "VALUES('$username', '$email', '$password', 'subcriber' )";
-        $register_user_query = mysqli_query($connection, $query);
-        if (!$register_user_query) {
-            // code...
-            die("Query Failed" . mysqli_error($connection) . ' ' . mysqli_errno($connection));
-        }
-
-        $message = "Your Registration Has Been Submitted";
-
-    }
-     else {
-        $message = "Field Can Not Be Empty";
-    }
-
-} else {
-    $message = "";
 }
-
-
 ?>
 
 
@@ -86,7 +76,6 @@ if (isset($_POST['submit'])) {
                 <h1>Register</h1>
                     <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
 
-                        <h4 class="text-center"><?php echo $message; ?></h4>
                         <div class="form-group">
                             <label for="username" class="sr-only">username</label>
                             <input type="text" name="username" id="username" class="form-control" placeholder="Enter Desired Username">
