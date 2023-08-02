@@ -4,7 +4,8 @@
 <?php
 
 
-if ($_SERVER['REQUEST_METHOD'] == "POST ") {
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+// if (isset($_POST['register'])) {
     // code...
 
     $username = trim($_POST['username']);
@@ -17,29 +18,39 @@ if ($_SERVER['REQUEST_METHOD'] == "POST ") {
         'email' => '',
         'password' => ''
     ];
+
+    if (empty($username)) {
+        $error['username'] = '<h4 style="color:red;">Username cannot be empty!!!</h4>';
+   }
    
-   if (strlen($username) < 3) {
-        $error['username'] = 'Username too short!!!';
-   }
-   
-   if ($username = '') {
-        $error['username'] = 'Username cannot be empty!!!';
+   elseif (strlen($username) < 3) {
+        $error['username'] = '<h4 style="color:red;">Username too short!!!</h4>';
    }
 
-     if (username_exists($username)) {
-        $error['username'] = 'Username already exist!!!';
+     elseif (username_exists($username)) {
+        $error['username'] = '<h4 style="color:red;">Username already exist!!!</h4>';
    }
 
-    if ($email = '') {
-        $error['email'] = 'email cannot be empty!!!';
+   // else{
+
+   //      $error['username'] = '<h4 style="color:green;">Username Accepted!!!</h4>';
+   // }
+
+    if (empty($email)) {
+        $error['email'] = '<h4 style="color:red;">email cannot be empty!!!</h4>';
    }
 
-     if (email_exists($email)) {
+     elseif (email_exists($email)) {
         $error['email'] = 'email already exist!!!';
    }
 
-    if ($password = '') {
-        $error['password'] = 'password cannot be empty!!!';
+   //  else{
+
+   //      $error['email'] = '<h4 style="color:green;">Email Accepted!!!</h4>';
+   // }
+
+    if (empty($password)) {
+        $error['password'] = '<h4 style="color:red;">password cannot be empty!!!</h4>';
    }
 
    foreach ($error as $key => $value) {
@@ -53,6 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST ") {
    if (empty($error)) {
        // code...
         register_user($username, $email, $password);
+
+       login_user($username, $password);
    }
 
 }
@@ -77,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST ") {
             <div class="col-xs-6 col-xs-offset-3">
                 <div class="form-wrap">
                 <h1>Register</h1>
-                    <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
+                    <form role="form" action="registration.php" method="post" id="login-form" autocomplete="on">
 
                         <div class="form-group">
                             <label for="username" class="sr-only">username</label>
@@ -95,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST ") {
                             <p><?php echo isset($error['password']) ? $error['password'] : '' ;?></p>
                         </div>
                 
-                        <input type="submit" name="Register" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Register">
+                        <input type="submit" name="register" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Register">
                     </form>
                  
                 </div>

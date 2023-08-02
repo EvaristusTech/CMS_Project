@@ -309,6 +309,9 @@ function login_user($username, $password) {
 
     global $connection;
 
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+
     $username = mysqli_real_escape_string($connection, $username);
     $password = mysqli_real_escape_string($connection, $password);
 
@@ -342,9 +345,11 @@ if (password_verify($password, $db_user_password)){
         $_SESSION['lastname'] = $db_user_lastname;
         $_SESSION['user_role'] = $db_user_role;
 
-        header("Location: ../admin");
+       header("Location: /cms/admin");
+
     }else {
-        header("Location: ../index.php");
+        redirect("/cms/index.php");
+        
     }
 
 }
