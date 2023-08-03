@@ -30,10 +30,28 @@
     if (isset($_GET['category'])) {
         // code...
         $post_cat_id = $_GET['category'];
+
+
+    if (is_admin($_SESSION['username'])) {
+        // code...
+           $query1 = mysqli_prepare($connection, "SELECT post_id, post_title, post_auther, post_date, post_image, post_content FROM posts WHERE post_catetory_id = ?");
+    } else {
+
+        $query2 = mysqli_prepare($connection, "SELECT post_id, post_title, post_auther, post_date, post_image, post_content FROM posts WHERE post_catetory_id = ? AND post_status = ? "); 
+
+        $published = 'published';
+    }
  
    
-        $query = "SELECT * FROM posts WHERE post_catetory_id = $post_cat_id AND post_status = 'published' "; 
-        $post_item = mysqli_query($connection, $query);
+        // $post_item = mysqli_query($connection, $query);
+
+    if (isset($query1)) {
+        // code...
+        mysqli_stmt_bind_param();
+
+
+
+    }
 
 
 
