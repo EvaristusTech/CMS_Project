@@ -47,7 +47,7 @@
 
     if (isset($query1)) {
         // code...
-        mysqli_stmt_bind_param();
+        // mysqli_stmt_bind_param();
 
 
 
