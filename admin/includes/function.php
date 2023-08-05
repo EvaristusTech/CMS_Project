@@ -70,15 +70,20 @@ $cat_title = $_POST['cat_title'];
          // code...
      echo "<h5 style='color:red'>Empty field!!!</h5>";
  } else{
- $query = "INSERT INTO categories(cat_title) ";
-   $query .= "VALUE('{$cat_title}')";
 
-  $create_category_query = mysqli_query($connection, $query); 
-          if (!$create_category_query) {
+ $query = mysqli_prepare($connection, "INSERT INTO categories(cat_title) VALUE(?)");
+ 
+mysqli_stmt_bind_param($query, 's', $cat_title);
+
+mysqli_stmt_execute($query);
+
+          if (!$query) {
                // code...
             die('query failed' . mysqli_error($connection));
                      }
   }
+
+  mysqli_stmt_close($query);
                                     
  }
 
