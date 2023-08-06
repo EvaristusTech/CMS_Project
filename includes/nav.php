@@ -25,7 +25,7 @@
 
                             $category_class = '';
                             $registration_class = '';
-                            $registration = 'registration.php';
+                            $registration = 'registration';
 
 
                            $page_name = basename($_SERVER['PHP_SELF']);
@@ -40,7 +40,7 @@
 
                            }
 
-                            echo "<li class='$category_class'><a href='category.php?category=$cat_id'>{$cat_title}</a></li>";
+                            echo "<li class='$category_class'><a href='/cms/category/{$cat_id}'>{$cat_title}</a></li>";
                         }
 
 
@@ -49,15 +49,15 @@
 
 
                   <li>
-                    <a href="admin">Admin</a>
+                    <a href="/cms/admin">Admin</a>
                   </li>
 
                    <li class="<?php echo $registration_class ?>">
-                    <a href="Registration.php">Registration</a>
+                    <a href="/cms/Registration">Registration</a>
                   </li>
 
                    <li>
-                    <a href="contact.php">Contact</a>
+                    <a href="/cms/contact">Contact</a>
                   </li>
 
 <?php
@@ -68,7 +68,7 @@
 
             $the_post_id = $_GET['p_id'];
             // code...
-            echo "<li><a href='admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit Post</a></li>";
+            echo "<li><a href='/cms/admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit Post</a></li>";
         }
     }
 
