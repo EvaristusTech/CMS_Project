@@ -46,15 +46,32 @@
 
                     ?> 
 
+                    <?php if(isLoggedIn()): ?>
+
+                        <li>
+                        <a href="/cms/admin">Admin</a>
+                        </li>
+
+                        <li>
+                        <a href="/cms/includes/logout">LogOut</a>
+                        </li>
 
 
-                  <li>
-                    <a href="/cms/admin">Admin</a>
-                  </li>
+                    <?php else: ?>
 
+                      <li>
+                        <a href="/cms/login">Login</a>
+                     </li>
+
+                    <?php endif; ?>
+
+
+                  
                    <li class="<?php echo $registration_class ?>">
                     <a href="/cms/Registration">Registration</a>
                   </li>
+
+
 
                    <li>
                     <a href="/cms/contact">Contact</a>

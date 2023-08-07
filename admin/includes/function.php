@@ -10,7 +10,37 @@ function escape($string) {
 
 }
 
+function ifItIsMethod($method=null) {
 
+    if ($_SERVER['REQUEST_METHOD'] == strtoupper($method)) {
+        // code...
+        return true;
+
+    }
+
+     return false;
+}
+
+
+
+function isLoggedin(){
+
+    if (isset($_SESSION['user_role'])) {
+        // code...
+        return true;
+    }
+
+        return false;
+}
+
+
+function checkIfUserIsLoggedinAndRedirect($redirectLocation=null){
+
+    if (isLoggedIn()) {
+        // code...
+        redirect($redirectLocation);
+    }
+}
 
 
 function users_online(){
@@ -265,6 +295,8 @@ function redirect($location) {
      global $connection;
 
     return header("Location" . $location);
+
+    exit();
 }
 
 
@@ -337,9 +369,8 @@ function login_user($username, $password) {
         $db_user_lastname = $row['user_lastname'];
         $db_user_role = $row['user_role'];
         $db_user_password = $row['user_password'];
-    }
 
-        // $password = crypt($password, $db_user_password);
+                // $password = crypt($password, $db_user_password);
     
 
 if (password_verify($password, $db_user_password)){
@@ -353,8 +384,13 @@ if (password_verify($password, $db_user_password)){
        header("Location: /cms/admin");
 
     }else {
-        redirect("/cms/index.php");
+        // redirect("/cms/index.php");
+        return false; 
         
-    }
+        }
 
+    }
+    
+        return true;
 }
+
