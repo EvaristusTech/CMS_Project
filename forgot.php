@@ -3,15 +3,33 @@
 
 <?php
 
-	$forgot = $_GET['forgot'];
+	// $forgot = isset($_GET['forgot']);
 
-	if (!ifItIsMethod('get') || !$forgot) {
+	if (!ifItIsMethod('get') && !isset($_GET['forgot'])) {
 		// code...
+			// redirect('index');
+		header("Location: ./index");
+	} 
 
-		redirect('index');
+
+if (!ifItIsMethod('post')) {
+		// code...
+	if (isset($_POST['email'])) {
+		// code...
+		$email = $_POST['email'];
+
+		$length = 50; 
+
+		$token = bin2hex(openssl_random_pseudo_bytes($length));
+
+		if (email_exists($email)) {
+			// code...
+			echo "e dey exist ooo";
+		}
+
+
 	}
-
-
+}
 
 
 
