@@ -1,6 +1,23 @@
-
 <?php  include "includes/database.php"; ?>
 <?php  include "includes/header.php"; ?>
+
+<?php
+
+	$forgot = $_GET['forgot'];
+
+	if (!ifItIsMethod('get') || !$forgot) {
+		// code...
+
+		redirect('index');
+	}
+
+
+
+
+
+
+
+?>
 
 
 <!-- Page Content -->
