@@ -5,16 +5,22 @@
 
 	// $forgot = isset($_GET['forgot']);
 
-	if (!ifItIsMethod('get') && !isset($_GET['forgot'])) {
+	if (ifItIsMethod('get') && isset($_GET['forgot'])) {
 		// code...
-			// redirect('index');
-		header("Location: ./index");
-	} 
+
+	} else {
+
+		header("Location: /cms/index");
+
+	}
 
 
-if (!ifItIsMethod('post')) {
+if (ifItIsMethod('post')) {
 		// code...
-	if (isset($_POST['email'])) {
+
+} else {
+
+		if (isset($_POST['email'])) {
 		// code...
 		$email = $_POST['email'];
 
@@ -24,7 +30,21 @@ if (!ifItIsMethod('post')) {
 
 		if (email_exists($email)) {
 			// code...
-			echo "e dey exist ooo";
+
+			$query = "UPDATE users SET token='{$token}' WHERE user_email = ? ";
+			if ($token_query = mysqli_prepare($connection, $query)) {
+				// code...
+
+			mysqli_stmt_bind_param($token_query, "s", $email);
+
+			mysqli_stmt_excute($token_query);
+
+			mysqli_stmt_close($token_query); 
+
+			} else{
+				echo "Query Failed" . mysqli_error($connection);
+			}
+
 		}
 
 
@@ -32,7 +52,7 @@ if (!ifItIsMethod('post')) {
 }
 
 
-
+ 
 
 
 ?>
