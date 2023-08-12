@@ -72,7 +72,7 @@ if (ifItIsMethod('post')) {
 
                                 <h3><i class="fa fa-lock fa-4x"></i></h3>
                                 <h2 class="text-center">Forgot Password?</h2>
-                                <p>You can reset your password here...</p>
+                                <p>You can reset your password here..</p>
                                 <div class="panel-body">
 
 
